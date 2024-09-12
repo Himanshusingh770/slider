@@ -16,8 +16,8 @@ gallery.innerHTML = images.map((image, index) =>
 ).join('');
 
 // Modal elements
-const popupimage = document.getElementById("imageModal");
-const selectpopupimage = document.getElementById("modalImage");
+const popupImage = document.getElementById("imageModal");
+const selectPopupImage = document.getElementById("modalImage");
 const imageDescription = document.querySelector(".caption");
 const dotsContainer = document.querySelector(".dots");
 const closeModalButton = document.querySelector(".close");  // Reference to the close button
@@ -25,19 +25,19 @@ const closeModalButton = document.querySelector(".close");  // Reference to the 
 // Function to open modal and show the clicked image
 function openModal(index) {
   currentIndex = index;
-  popupimage.style.display = "block";
-  selectpopupimage.src = `./images/${images[index]}`;
+  popupImage.style.display = "block";
+  selectPopupImage.src = `./images/${images[index]}`;
   imageDescription.innerHTML = `Image ${index + 1}`;
   updateDots();
 }
 
 // Close modal when clicking the close button
 closeModalButton.addEventListener("click", () => {
-  popupimage.style.display = "none";
+  popupImage.style.display = "none";
 });
 
 // Close modal when clicking outside the image
-popupimage.addEventListener("click", (e) => {
+popupImage.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
   }

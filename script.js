@@ -6,7 +6,7 @@ const images = [
 ];
 
 let currentIndex = 0; // Tracks the current image index
-let visibleDotCount = 12; // Updated number of dots to display (set to 20)
+let visibleDotCount = images.length; // Updated number of dots to display (set to 20)
 let dotRangeStart = 0; // Starting index for the visible dots
 
 // Dynamically generate gallery items
@@ -16,28 +16,28 @@ gallery.innerHTML = images.map((image, index) =>
 ).join('');
 
 // Modal elements
-const modal = document.getElementById("imageModal");
-const modalImage = document.getElementById("modalImage");
-const caption = document.querySelector(".caption");
+const popupimage = document.getElementById("imageModal");
+const selectpopupimage = document.getElementById("modalImage");
+const imageDescription = document.querySelector(".caption");
 const dotsContainer = document.querySelector(".dots");
 const closeModalButton = document.querySelector(".close");  // Reference to the close button
 
 // Function to open modal and show the clicked image
 function openModal(index) {
   currentIndex = index;
-  modal.style.display = "block";
-  modalImage.src = `./images/${images[index]}`;
-  caption.innerHTML = `Image ${index + 1}`;
+  popupimage.style.display = "block";
+  selectpopupimage.src = `./images/${images[index]}`;
+  imageDescription.innerHTML = `Image ${index + 1}`;
   updateDots();
 }
 
 // Close modal when clicking the close button
 closeModalButton.addEventListener("click", () => {
-  modal.style.display = "none";
+  popupimage.style.display = "none";
 });
 
 // Close modal when clicking outside the image
-modal.addEventListener("click", (e) => {
+popupimage.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
   }
@@ -56,7 +56,6 @@ function updateDots() {
 
     // Set the title attribute to show the image name as a tooltip
     dotElement.title = images[i];
-
     dotsContainer.appendChild(dotElement);
   }
 }

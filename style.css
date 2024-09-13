@@ -1,58 +1,80 @@
-/* Gallery styling */
-body{
+/* General reset */
+body {
   margin: 0;
   padding: 0;
 }
+
+/* Border for gallery container */
 .Border {
   border: 3px solid black;
   border-radius: 10px;
   margin: 3% 10%;
 }
+
+/* Grid layout for gallery */
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 15px; 
+  gap: 15px;
 }
 
+/* Gallery images */
 .gallery-img {
   width: 100%;
   height: 200px;
   cursor: pointer;
-  
 }
-
-
 
 /* Modal styling */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
   left: 0;
-  top: 0px;
+  top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
- 
+  overflow: hidden;
+  z-index: 1;
 }
 
-.modal-content {
+/* Slider container */
+.slider-wrapper {
+  position: relative;
+  width: 40%;
+  max-width: 1200px; /* You can adjust this */
+  height: 100%;
+  /* Adjust as needed */
   margin: auto;
-  display: block;
-  max-width: 50%;
-  max-height: 50%;
-  padding-top: 100px; 
+  overflow: hidden; /* Ensure only one image is visible */
+  top: 20%;
 }
 
+/* Slider itself */
+.slider {
+  display: flex;
+  transition: transform 0.9s ease;
+}
+
+/* Images inside slider */
+.slider-img {
+  width: 100%; /* Ensure only one image shows at a time */
+  height: 100%; /* Adjust height automatically */
+  max-height: 100%; /* Restrict height of images */
+  object-fit: contain; /* Ensure image fits within slider */
+}
+
+/* Modal image description */
 .caption {
   text-align: center;
   color: white;
   padding: 10px 0;
 }
 
+/* Close button */
 .close {
   position: absolute;
   top: 10px;
@@ -60,37 +82,54 @@ body{
   font-size: 30px;
   color: white;
   cursor: pointer;
+  z-index: 2;
 }
 
 .close:hover {
   color: #f00;
 }
 
-/* Navigation Arrows */
+/* Navigation arrows */
 .arrow {
   position: absolute;
-  top: 33%;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 40px;
   color: white;
   cursor: pointer;
   padding: 10px;
   border-radius: 50%;
-  z-index: -1;
+  z-index: 2;
 }
 
-
 .arrow.left {
-  left: 80px;
+  left: 20px;
 }
 
 .arrow.right {
-  right: 80px;
+  right: 20px;
+}
+.arrow {
+  cursor: pointer;
+  color: black; /* Default arrow color */
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
-/* Slider dots styling */
+.arrow.disabled {
+  cursor: not-allowed;
+  color: gray; /* Color for disabled arrow */
+  opacity: 0.5; /* Slightly dim the arrow */
+}
+
+/* Slider dots */
 .dots {
+  position: absolute;
+  bottom: 20px; /* Position the dots above the bottom */
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .dot {
@@ -112,59 +151,121 @@ body{
   .gallery {
     grid-template-columns: repeat(4, 1fr);
   }
-  .arrow {
-    top: 41%;
-    font-size: 80px;
-    padding: 10px;
-  }
-  .arrow.left {
-    left: 260px;
-  }
-  
-  .arrow.right {
-    right: 260px;
-  }
-  .dot {
-    height: 25px;
-    width: 25px;
-    margin: 2px;
-  }
   .gallery-img {
     width: 100%;
     height: 450px;
     cursor: pointer;
-    
   }
-  .close{
-    font-size: 50px;
+
+  .arrow {
+    top: 50%;
+    font-size: 60px;
   }
-  .dot {
-    height: 18px;
-    width: 18px;
-    margin: 3px;}
-    .modal-content {
-    
-      padding: 260px 175px 20px 175px; 
-}
+
+  .arrow.left {
+    left: 40px;
+  }
+
+  .arrow.right {
+    right: 40px;
+  }
+  .close {
+    top: 40px;
+    right: 70px;
+    font-size: 80px;
+    color: white;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+   
+  }
 }
 
-@media only screen and (max-width: 1020px) {
+@media only screen and (max-width: 1445px) {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
   }
- 
+  .gallery-img {
+    width: 100%;
+    height: 240px;
+    cursor: pointer;
+  }
+
+  .arrow {
+    top: 50%;
+    font-size: 30px;
+  }
+
+  .arrow.left {
+    left: 20px;
+  }
+
+  .arrow.right {
+    right: 20px;
+  }
+  .close {
+    top: 40px;
+    right: 70px;
+    font-size: 50px;
+    color: white;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+    top: 20%;
+  }
+}
+
+@media only screen and (max-width: 1030px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gallery-img {
+    width: 100%;
+    height: 150px;
+    cursor: pointer;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+    top: 20%;
+  }
 }
 
 @media only screen and (max-width: 770px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .gallery-img {
     height: 160px;
   }
-  .arrow{
-    top: 32%;
+
+  .arrow {
+    top: 50%;
     font-size: 25px;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 67%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+    top: 25%;
   }
 
 }
@@ -173,42 +274,87 @@ body{
   .gallery {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .Border {
-    border: 3px solid black;
-    border-radius: 10px;
     margin: 5% 1%;
   }
+
   .arrow {
-    font-size: 13px;
-    padding: 10px;
-    top: 30%;
-    border-radius: 50%;
+    font-size: 20px;
+    top: 50%;
+  }
+
+  .gallery-img {
+    height: 100px;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 78%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+    top: 33%;
+  }
+  .dots{
+    bottom: 100px;
+    padding: 40px 0px;
+  }
+  .dot{
+    height: 7px;
+    width: 7px;
+    margin: 3.1px;
+  }
+  .close {
+    top: 10%;
+    right: 10%;
+    font-size: 30px;
+  }
+  .arrow.left {
+    left: 10px;
+  }
+
+  .arrow.right {
+    right: 10px;
   }
   
-  
+}
+
+@media only screen and (max-width: 330px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .slider-img {
+    height: 30vh; 
+  }
   .arrow.left {
     left: 0px;
   }
-  
+
   .arrow.right {
     right: 0px;
   }
-  
-.gallery-img {
-  width: 100%;
-  height: 100px;
-  cursor: pointer;
-  
-}
-.modal-content {
-  max-width: 79%;
-  padding-top: 100px;
-}
-  
-}
-@media only screen and (max-width: 430px) {
-  .arrow{
-    top: 25%;
+  .close {
+    top: 10%;
+    right: 10%;
+    font-size: 30px;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 84%;
+    height: 100%;
+    /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensure only one image is visible */
+    top: 35%;
+  }
+  .dots{
+    bottom: 100px;
+    padding: 40px 0px;
+  }
+  .dot{
+    height: 7px;
+    width: 7px;
+    margin: 3.1px;
   }
 }
